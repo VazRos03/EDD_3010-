@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Arturo
  */
-public class Arreglo {
+public class Arreglo<L> {
    private  L tamanio;
    private int longuitud;
    private int elemento;
