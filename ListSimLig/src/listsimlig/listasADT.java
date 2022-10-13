@@ -62,8 +62,8 @@ public class listasADT<T>{
             
             while(temp.getDato() != referencia){
                 
-                temp = temp.getSiguiente();
-                temp1 = temp1.getSiguiente();
+                temp = temp.siguiente;
+                temp1 = temp1.siguiente;
             }
             
             temp.setSiguiente(nuevo);
@@ -136,22 +136,18 @@ public class listasADT<T>{
     public void actualizar(T buscar, T valor){
         Nodo<T> temp = head;
         
-        try{
-            while(temp.getDato()!= buscar){
-                temp = temp.siguiente;
-            }
-            temp.setDato(valor);
-        }catch(Exception e){
-            System.out.println("El dato a buscar no se encuentra registrado");
+        while(temp.getDato()!= buscar){
+            temp = temp.siguiente;
         }
+            
     }
     
     public void transversal(){
-        Nodo<T> temp = head;
+        Nodo<T> recorre = head;
         
-        while(temp != null){
-            System.out.println(temp);
-            temp = temp.siguiente;
+        while(recorre != null){
+            System.out.println("["+recorre.dato+"]-->");
+            recorre = recorre.siguiente;
         }
         
     }

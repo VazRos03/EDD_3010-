@@ -9,13 +9,10 @@ package listsimlig;
  * @author Arturo
  */
 public class Nodo<T> {
-    private T dato;
-    private Nodo<T> siguiente;
-
-    public Nodo() {
-        
-    }
-
+    public T dato;
+    public Nodo<T> siguiente;
+    
+    //constrcutor para insertar al inicio
     public Nodo(T dato, Nodo<T> siguiente) {
         this.dato = dato;
         this.siguiente = siguiente;
