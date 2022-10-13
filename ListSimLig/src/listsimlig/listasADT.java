@@ -10,43 +10,44 @@ package listsimlig;
  */
 public class listasADT<T>{
     
-    Nodo<T> head;
-    int tamanio;
+    protected Nodo<T> head, fin; // punteros para saber el incio y el fin del nodo
+    protected int tamanio;//tamanio de la lista 
 
     public listasADT() {
+        head = null;
+        fin = null;
     }
     
     //Metodos de nuestra lista
     public Boolean estaVacia(){
-        return this.head == null;
+        if (head == null){
+            System.out.println("Lista vacia");
+        }else{
+            System.out.println( this.tamanio + " elementos registrados en la lista");
+        }
+        return null;
     }
     
     public int getTamanio(){
         return this.tamanio;
     }
     
+    //metodo para agregar al final 
     public void agregarAlFinal(T valor){
-        if( head == null){
-            head = new Nodo(valor);
+        if(!estaVacia()){
+            fin.siguiente= new Nodo(valor);
+            fin = fin.siguiente;
         }else{
-            Nodo<T> nuevo = new Nodo(valor);
-            Nodo<T> aux = head;
-            
-            while(aux.getSiguiente() != null){
-                aux = aux.getSiguiente();
-            }
-            aux.setSiguiente(nuevo);
+            head = fin = new Nodo(valor);
         }
     }
     
+    //metodo para agregar al inicio
     public void agregarAlInicio(T valor){
-        if(head == null){
-            head = new Nodo(valor);
-        }else{
-            Nodo<T> nuevo = new Nodo(valor);
-            nuevo.setSiguiente(head);
-            head = nuevo;
-            tamanio++;
+        head = new Nodo(valor, head);//creando nuevo nodo
+        
+        if(fin == null){
+            fin = head;
         }
     }
     
@@ -56,93 +57,103 @@ public class listasADT<T>{
         }else{
             Nodo<T> nuevo = new Nodo(valor);
             
-            Nodo<T> aux = head;
-            Nodo<T> aux1 = head.getSiguiente();
+            Nodo<T> temp = head;
+            Nodo<T> temp1 = head.getSiguiente();
             
-            while(aux.getDato() != referencia){
+            while(temp.getDato() != referencia){
                 
-                aux = aux.getSiguiente();
-                aux1 = aux1.getSiguiente();
+                temp = temp.getSiguiente();
+                temp1 = temp1.getSiguiente();
             }
             
-            aux.setSiguiente(nuevo);
-            aux.getSiguiente().setSiguiente(aux1);
+            temp.setSiguiente(nuevo);
+            temp.getSiguiente().setSiguiente(temp1);
             
-            tamanio++;
         }
     }
     
-    public void eliminar(int posicion){
-        int pos = 0;
-        
-        if (head == null){
-            System.out.println("Lista vacia");
-        }else{
-            Nodo<T> auxAnterior = head;
-            Nodo<T> aux = head.getSiguiente();
-            
-            while(pos != posicion){
-                pos++;
-                aux = aux.getSiguiente();
-                auxAnterior = aux.getSiguiente();
+    public void eliminar(int elemento){
+        if (!estaVacia()){
+                if(head == fin && elemento == head.dato){
+                    head = fin = null;
+                
+                 }else if (elemento == head.dato){
+                    head = head.siguiente;
+                }else{
+                    Nodo<T> anterior = new Nodo(elemento);
+                    Nodo<T> temp = new Nodo(elemento);
+
+                    anterior = head;
+                    temp = head.siguiente;
+
+                    while(temp != null && temp.dato != elemento){
+                        anterior = anterior.siguiente;
+                        temp = temp.siguiente;
+                    }
+                    if(temp != null){
+                        anterior.siguiente = temp.siguiente;
+                        if(temp == fin){
+                            fin = anterior;
+                        }
+                    }
             }
-            auxAnterior.setDato(aux.getDato());
-            auxAnterior.setSiguiente(aux.getSiguiente());
-            tamanio--;
         }
     }
     
+    //metodo para eliminar el nodo final de la lista
     public void eliminarElFinal(){
-        Nodo<T> nuevo = head.getSiguiente();
-        Nodo<T> aux = head;
-        
-        while(nuevo.getSiguiente() != null){
-            aux = aux.getSiguiente();
-            nuevo = nuevo.getSiguiente();
+        Nodo<T> elemento = fin;
+        if(head == fin){
+            head = fin = null;
+        }else{
+            Nodo<T> temp = head;//sirve para recorrer en la lista 
+            while(temp.siguiente != fin){
+                temp = temp.siguiente;
+            }
+            fin = temp;
+            fin.siguiente = null;
         }
-        
-        aux.setSiguiente(null);
-        
-        tamanio--;
     }
     
-    public void buscar(T valor){
-        Nodo<T> aux = head;
-        int i = 0;
-        
-        try{
-            while(aux.getDato() != valor && aux.getDato() != null){
-                aux = aux.getSiguiente();
-                i++;
-            }
-            System.out.println("El dato " + aux.getDato()+" esta en la posicion " + i);
-        }catch(Exception e){
-            System.out.println("El dato no esta registrado");
+    //metodo para eliminar en el inicio
+    public void eliminarElPrimero(){
+        Nodo<T> elemento = head;
+        if( head == fin){
+            head = fin = null;
+        }else{
+            head = head.siguiente;
         }
-        
+    }
+    
+    public Boolean buscar(T valor){
+        Nodo<T> temp = head;
+        while(temp != null && temp.dato != valor){
+            temp = temp.siguiente;
+        }
+        return temp != null;
     }
     
     public void actualizar(T buscar, T valor){
-        Nodo<T> aux = head;
+        Nodo<T> temp = head;
         
         try{
-            while(aux.getDato()!= buscar){
-                aux = aux.getSiguiente();
+            while(temp.getDato()!= buscar){
+                temp = temp.siguiente;
             }
-            aux.setDato(valor);
+            temp.setDato(valor);
         }catch(Exception e){
             System.out.println("El dato a buscar no se encuentra registrado");
         }
     }
     
     public void transversal(){
-        Nodo<T> aux = head;
+        Nodo<T> temp = head;
         
-        while(aux != null){
-            System.out.println(aux);
-            aux = aux.getSiguiente();
+        while(temp != null){
+            System.out.println(temp);
+            temp = temp.siguiente;
         }
-        System.out.println("\n");
+        
     }
     
     
