@@ -9,11 +9,11 @@ package priorityqueue;
  * @author Arturo
  */
 public class colasPrioridadADT <T>{
-    int nivelesDePrioridad;
+    int [] nivelesDePrioridad;
     Nodo inicioCola, finalCola;
 
     public colasPrioridadADT() {
-       nivelesDePrioridad = 7;
+       nivelesDePrioridad = new int[7];
        inicioCola = null;
        finalCola = null;
     }
@@ -25,11 +25,18 @@ public class colasPrioridadADT <T>{
     
     //metodo que retorna el numero de elementos 
     public int length(){
-        return nivelesDePrioridad;
+        return nivelesDePrioridad.length;
     }
     
     //metodo que ingresa elemento a la cola dependiendo su priorirad
     public void enqueue(int priority, T elem){
-        
+        int aux = 0; 
+        Nodo nuevo = new Nodo(elem);
+        nuevo.dato = elem;
+        nuevo.siguiente = null;
+        if(isEmpety() && priority){
+            inicioCola = nuevo;
+            finalCola = nuevo;
+        }
     }
 }
