@@ -15,6 +15,16 @@ public class Hash {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        HashTableArray<String> hm = new HashTableArray<String>(10);
+        
+        hm.add(11, "Robert");
+        hm.add(12, "Marc");
+        hm.add(13, "Sandra");
+        
+        //imprimiendo elemento en especifico
+        System.out.println(hm.get(13));
+        
+        System.out.println(hm);
     }
     
 }
