@@ -8,11 +8,12 @@ package priorityqueue;
  *
  * @author Arturo
  */
-public class Nodo <T> {
-    T dato;
+public class Nodo {
+    int dato;
+    int prioridad;
     Nodo siguiente;
 
-    public Nodo( T valor) {
+    public Nodo( int valor) {
         dato = valor;
         siguiente = null;
     }

@@ -13,7 +13,6 @@ public class colasPrioridadADT <T>{
     Nodo inicioCola, finalCola;
 
     public colasPrioridadADT() {
-       nivelesDePrioridad = new int[7];
        inicioCola = null;
        finalCola = null;
     }
@@ -29,14 +28,34 @@ public class colasPrioridadADT <T>{
     }
     
     //metodo que ingresa elemento a la cola dependiendo su priorirad
-    public void enqueue(int priority, T elem){
+    public void enqueue(int priority, int elem){
         int aux = 0; 
         Nodo nuevo = new Nodo(elem);
         nuevo.dato = elem;
         nuevo.siguiente = null;
-        if(isEmpety() && priority){
+        if(isEmpety() && priority == aux){
             inicioCola = nuevo;
             finalCola = nuevo;
+        }else{
+            finalCola.siguiente = nuevo;
+            finalCola = nuevo;
+            
         }
+    }
+    
+    public void dequeue(){
+        int delete = 0;
+        if(isEmpety()){
+            System.out.println("Cola vacia");
+        }else{
+            delete = inicioCola.dato;
+            
+            nivelesDePrioridad --;
+        }
+        System.out.println("elemento " + delete + " eliminado");
+    }
+    
+    public String imprimir(){
+        return inicioCola;
     }
 }
