@@ -15,14 +15,18 @@ public class hash_map {
     public static void main(String[] args) {
         
         //declarando a la clase HashMap con un objeto llamado "diccionario"
-        HashMap diccionario = new HashMap();
+        HashMap<String, String> diccionario = new HashMap<>();
         
         //estableciendo valores en el objeoto diccionario
         diccionario.put("user", "Arturo");
         diccionario.put("age", "18");
         diccionario.put("height", "1.75");
         
-        //accediendo a las key del diccionario
+        System.out.println("------Elementos del diccionario------");
+        System.out.println(diccionario);
+        
+        System.out.println("-------Acceso a cada elemento mediante la key------");
+        //accediendo a los valores mediantes las llaves
          String nombre = diccionario.get("user").toString();
          System.out.println(nombre);
          
@@ -32,14 +36,27 @@ public class hash_map {
          String altura = diccionario.get("height").toString();
          System.out.println(altura);
          
+         System.out.println("-------Existe esta key?-------");
          //comprobando que existe una key
          boolean existe = diccionario.containsKey("marital status");
-         System.out.println(existe);
+         //condicional para saber si existe una key
+         if(existe == false){
+             System.out.println("La key 'Marital Status' no esta registrada");
+         }else{
+             System.out.println("Si existe la key 'Marital Status'");
+         }
          
-         System.out.println("---------eliminando elementos----------");
-         //quitando elemento del diccionario
-         boolean adios = diccionario.remove("height", "1.75");
-         System.out.println(adios);
+         System.out.println("------Tamanio del diccionario-------");
+         //comprobando que el diccionario no esta vacio para sabre el tamanio del diccionario
+         if(!diccionario.isEmpty()){
+             System.out.println("El diccionario tiene " + diccionario.size() + " elementos");
+         }else{
+             System.out.println("Diccionario vacio");
+         }
+         
+         System.out.println("---------eliminando un elemento del diccionario----------");
+         //quitando elemento del diccionario usando su key y su value
+         diccionario.remove("height", "1.75");
          System.out.println(diccionario);
     }
 }

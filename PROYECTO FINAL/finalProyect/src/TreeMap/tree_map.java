@@ -21,18 +21,28 @@ public class tree_map {
         tree.put(2, "perro");
         tree.put(5, "Cebra");
         
+        System.out.println("-----Elementos del objeto tree--------");
         //mostrando el mapa
         System.out.println(tree);
+        
+        System.out.println("-----tree esta vacio?--------");
+        //usamos un condicional para saber si tree esta vacio, mediante el metodo 'isEmpty'
+        if(tree.isEmpty()){
+            System.out.println("Tree esta vacio");
+        }else{
+            System.out.println("Tree no esta vacio");
+        }
+        
+        System.out.println("-----Tamanio del objeto tree--------");
         //cantidad de elementos del treeMap
-        System.out.println(tree.size());
+        System.out.println("El objeto 'tree' tiene " + tree.size() + " elementos");
         
         //eliminando elementos del treeMapp
+        System.out.println("-----Eliminando un elemento--------");
         tree.remove(3, "Ciervo");
-        System.out.println("-----Eliminando elementos--------");
         System.out.println(tree);
-        
-        //imprimiendo el tamanio del treeMap
-        System.out.println(tree.size());
+        //imprimiendo el nuevo tamanio del treeMap
+        System.out.println("Ahora tiene "+tree.size() + " elemtnos");
         
     }
 }
