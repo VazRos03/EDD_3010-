@@ -4,7 +4,7 @@
  */
 package HashMap;
 
-//importando biblioteca para el uso de hasHMap
+//importando biblioteca para el uso de HashMap
 import java.util.HashMap;
 
 /**

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package TreeMap;
-import java.util.Map;
 import java.util.TreeMap;
 /**
  *
@@ -12,7 +11,7 @@ import java.util.TreeMap;
 public class tree_map {
     public static void main(String[] args) {
         //llamando a la clase treemap con su objeto llamado tree
-        Map<Integer, String> tree = new TreeMap<>();
+        TreeMap<Integer, String> tree = new TreeMap<>();
         
         //insertando elementos en el objeto "tree"
         tree.put(1, "Leon");
