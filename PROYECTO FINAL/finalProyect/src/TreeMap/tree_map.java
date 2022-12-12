@@ -42,7 +42,7 @@ public class tree_map {
         tree.remove(3, "Ciervo");
         System.out.println(tree);
         //imprimiendo el nuevo tamanio del treeMap
-        System.out.println("Ahora tiene "+tree.size() + " elemtnos");
+        System.out.println("Ahora tiene "+tree.size() + " elementos");
         
     }
 }
